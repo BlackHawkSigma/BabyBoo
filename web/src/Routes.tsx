@@ -8,6 +8,7 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Router, Route, Private } from '@redwoodjs/router'
+import MainLayout from 'src/layouts/MainLayout/MainLayout'
 
 const Routes = () => {
   return (
@@ -16,7 +17,7 @@ const Routes = () => {
       <Route path="/signup" page={SignupPage} name="signup" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-      <Private unauthenticated="login">
+      <Private unauthenticated="login" wrap={MainLayout}>
         <Route path="/home" page={HomePage} name="home" />
         <Route path="/gewicht" page={WeightPage} name="weight" />
       </Private>
