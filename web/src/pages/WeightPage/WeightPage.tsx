@@ -8,7 +8,7 @@ const WeightPage = () => {
 
       <h1>WeightPage</h1>
       <p>
-        Find me in <code>./web/src/pages/WeightPage/WeightPage.js</code>
+        Find me in <code>./web/src/pages/WeightPage/WeightPage.tsx</code>
       </p>
       <p>
         My default route is named <code>weight</code>, link to me with `
