@@ -1,25 +1,55 @@
+import { AuthenticationError } from '@redwoodjs/graphql-server'
+import { db } from './db'
+
 /**
- * Once you are ready to add authentication to your application
- * you'll build out requireAuth() with real functionality. For
- * now we just return `true` so that the calls in services
- * have something to check against, simulating a logged
- * in user that is allowed to access that service.
+ * The session object sent in as the first argument to getCurrentUser() will
+ * have a single key `id` containing the unique ID of the logged in user
+ * (whatever field you set as `authFields.id` in your auth function config).
+ * You'll need to update the call to `db` below if you use a different model
+ * name or unique field name, for example:
  *
- * See https://redwoodjs.com/docs/authentication for more info.
+ *   return await db.profile.findUnique({ where: { email: session.id } })
+ *                   ───┬───                       ──┬──
+ *      model accessor ─┘      unique id field name ─┘
+ *
+ * !! BEWARE !! Anything returned from this function will be available to the
+ * client--it becomes the content of `currentUser` on the web side (as well as
+ * `context.currentUser` on the api side). You should carefully add additional
+ * fields to the `select` object below once you've decided they are safe to be
+ * seen if someone were to open the Web Inspector in their browser.
  */
-export const isAuthenticated = () => {
-  return true
+export const getCurrentUser = async (session) => {
+  return await db.user.findUnique({
+    where: { id: session.id },
+    select: { id: true },
+  })
 }
 
-export const hasRole = ({ roles }) => {
-  return roles !== undefined
+/**
+ * The user is authenticated if there is a currentUser in the context
+ *
+ * @returns {boolean} - If the currentUser is authenticated
+ */
+export const isAuthenticated = (): boolean => {
+  return !!context.currentUser
 }
 
-// This is used by the redwood directive
-// in ./api/src/directives/requireAuth
-
-// Roles are passed in by the requireAuth directive if you have auth setup
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const requireAuth = ({ roles }) => {
-  return isAuthenticated()
+/**
+ * Use requireAuth in your services to check that a user is logged in,
+ * whether or not they are assigned a role, and optionally raise an
+ * error if they're not.
+ *
+ * @param roles: AllowedRoles - When checking role membership, these roles grant access.
+ *
+ * @returns - If the currentUser is authenticated (and assigned one of the given roles)
+ *
+ * @throws {AuthenticationError} - If the currentUser is not authenticated
+ * @throws {ForbiddenError} If the currentUser is not allowed due to role permissions
+ *
+ * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
+ */
+export const requireAuth = () => {
+  if (!isAuthenticated()) {
+    throw new AuthenticationError("You don't have permission to do that.")
+  }
 }
