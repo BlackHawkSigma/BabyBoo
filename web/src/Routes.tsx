@@ -12,7 +12,7 @@ import { Router, Route } from '@redwoodjs/router'
 const Routes = () => {
   return (
     <Router>
-      <Route path="/weight" page={WeightPage} name="weight" />
+      <Route path="/gewicht" page={WeightPage} name="weight" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )

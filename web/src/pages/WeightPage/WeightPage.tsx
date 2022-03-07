@@ -4,9 +4,9 @@ import { MetaTags } from '@redwoodjs/web'
 const WeightPage = () => {
   return (
     <>
-      <MetaTags title="Weight" description="Weight page" />
+      <MetaTags title="Gewicht" description="Weight page" />
 
-      <h1>WeightPage</h1>
+      <h1>Gewicht</h1>
       <p>
         Find me in <code>./web/src/pages/WeightPage/WeightPage.tsx</code>
       </p>
