@@ -11,7 +11,7 @@
     "serve": "yarn rw dev --fwd=\"--allowed-hosts all --host 0.0.0.0\""
   },
   "devDependencies": {
-    "@redwoodjs/core": "^0.49.0"
+    "@redwoodjs/core": "^0.50.0"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
