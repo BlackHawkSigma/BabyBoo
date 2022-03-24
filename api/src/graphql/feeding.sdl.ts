@@ -45,8 +45,8 @@ export const schema = gql`
   }
 
   type Query {
-    feedings: [Feeding!]! @skipAuth
-    feeding(id: Int!): Feeding @skipAuth
+    feedings: [Feeding!]! @requireAuth
+    feeding(id: Int!): Feeding @requireAuth
   }
 
   input StartFeedingInput {
@@ -63,9 +63,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    startFeeding(input: StartFeedingInput!): Feeding! @skipAuth
-    endFeeding(id: Int!, input: EndFeedingInput!): Feeding! @skipAuth
-    deleteFeeding(id: Int!): Feeding! @skipAuth
+    startFeeding(input: StartFeedingInput!): Feeding! @requireAuth
+    endFeeding(id: Int!, input: EndFeedingInput!): Feeding! @requireAuth
+    deleteFeeding(id: Int!): Feeding! @requireAuth
   }
 `
 
