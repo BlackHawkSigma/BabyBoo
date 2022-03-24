@@ -1,7 +1,10 @@
 export const schema = gql`
   type Weight {
     id: Int!
-    value: Float!
+    """
+    in gram
+    """
+    value: Int!
     recordedAt: DateTime!
     createdAt: DateTime!
   }
@@ -12,12 +15,18 @@ export const schema = gql`
   }
 
   input CreateWeightInput {
-    value: Float!
+    """
+    in gram
+    """
+    value: Int!
     recordedAt: DateTime!
   }
 
   input UpdateWeightInput {
-    value: Float
+    """
+    in gram
+    """
+    value: Int
     recordedAt: DateTime
   }
 
