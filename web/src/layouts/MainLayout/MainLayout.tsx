@@ -1,5 +1,5 @@
 import { useAuth } from '@redwoodjs/auth'
-import { Link, routes } from '@redwoodjs/router'
+import { Link, NavLink, routes } from '@redwoodjs/router'
 
 type MainLayoutProps = {
   children?: React.ReactNode
@@ -10,24 +10,26 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <>
-      <header className="flex items-center justify-between bg-purple-400 py-4 px-8 text-white">
+      <header className="flex items-center justify-between bg-purple-900 py-4 px-8 text-white">
         <h1 className="text-2xl tracking-tight">
-          <Link
-            className="text-purple-900 transition duration-100 hover:text-purple-200"
+          <NavLink
+            className="text-purple-200 transition duration-100 hover:text-purple-200"
+            activeClassName="text-purple-600"
             to={routes.home()}
           >
             Home
-          </Link>
+          </NavLink>
         </h1>
         <nav>
           <ul className="flex items-center font-light">
             <li>
-              <Link
+              <NavLink
                 className="rounded py-2 px-4 transition duration-100 hover:bg-purple-600"
-                to={routes.weight()}
+                activeClassName="text-purple-100 underline"
+                to={routes.feedings()}
               >
-                Gewicht
-              </Link>
+                Stillen
+              </NavLink>
             </li>
             <li>
               {isAuthenticated ? (
@@ -44,15 +46,13 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             </li>
             <li>
               {isAuthenticated && (
-                <div className="text-xs text-purple-300">
-                  {currentUser.name}
-                </div>
+                <div className="text-purple-300">{currentUser.name}</div>
               )}
             </li>
           </ul>
         </nav>
       </header>
-      <main className="mx-auto max-w-4xl rounded-b bg-white p-12 shadow">
+      <main className="mx-auto max-w-4xl rounded-b bg-white p-2 shadow md:p-12">
         {children}
       </main>
     </>

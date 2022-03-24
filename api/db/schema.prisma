@@ -11,20 +11,25 @@ generator client {
 model User {
   id                  Int       @id @default(autoincrement())
   email               String    @unique
-  name                String?
+  name                String
   hashedPassword      String
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
 }
 
+model Baby {
+  name      String
+  birthDate DateTime
+
+  @@id([name, birthDate])
+}
+
 model Weight {
   id         Int      @id @default(autoincrement())
-  value      Float
+  value      Int /// in gram
   recordedAt DateTime @default(now())
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
 }
 
 model Feeding {
@@ -33,19 +38,36 @@ model Feeding {
   side        FeedingSide?
   startTime   DateTime
   endTime     DateTime?
-  startWeight Float?
-  endWeight   Float?
+  pauses      Int? /// in minutes
+  startWeight Int? /// in gram
+  endWeight   Int? /// in gram
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 }
 
 enum FeedingType {
   BREAST
-  BOLLTE
+  BOTTLE
 }
 
 enum FeedingSide {
   LEFT
   RIGHT
-  BOTH
+}
+
+model DiaperChange {
+  id        Int       @id @default(autoincrement())
+  startTime DateTime
+  endTime   DateTime?
+  pee       Boolean
+  poop      Boolean
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Temperature {
+  id         Int      @id @default(autoincrement())
+  value      Float /// in °C
+  recordedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
 }
