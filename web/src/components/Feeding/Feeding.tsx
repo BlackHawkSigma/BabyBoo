@@ -33,7 +33,7 @@ const Feeding = ({ feeding }: FeedingProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(new Date())
-    }, 1000)
+    }, 1_000)
     return () => clearInterval(interval)
   }, [])
 
@@ -53,13 +53,15 @@ const Feeding = ({ feeding }: FeedingProps) => {
       <time>{startDate.toLocaleDateString('de-DE')}</time>
       <time>{startDate.toLocaleTimeString('de-DE')}</time>
       <span>({deltaMinutes(startDate, now)})</span>
-      <button
-        className="rounded-full bg-sky-300 px-4 py-2 disabled:bg-sky-100 disabled:text-slate-400"
-        disabled={loading || feeding.endTime !== null}
-        onClick={clickHandler}
-      >
-        beenden
-      </button>
+      {!feeding.endTime && (
+        <button
+          className="rounded-full bg-sky-300 px-4 py-2 disabled:bg-sky-100 disabled:text-slate-400"
+          disabled={loading}
+          onClick={clickHandler}
+        >
+          beenden
+        </button>
+      )}
     </div>
   )
 }
