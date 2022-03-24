@@ -1,9 +1,12 @@
 import { differenceInMinutes, parseISO } from 'date-fns'
 
-export const deltaMinutesNow = (time: Date | string): string => {
+export const deltaMinutes = (
+  first: Date | string,
+  second: Date | string
+): string => {
   const delta = differenceInMinutes(
-    typeof time === 'string' ? parseISO(time) : time,
-    new Date(),
+    typeof first === 'string' ? parseISO(first) : first,
+    typeof second === 'string' ? parseISO(second) : second,
     {
       roundingMethod: 'round',
     }

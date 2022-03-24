@@ -1,4 +1,6 @@
-import { deltaMinutesNow } from 'src/utils/time'
+import { Link, routes } from '@redwoodjs/router'
+import { useEffect, useState } from 'react'
+import { deltaMinutes } from 'src/utils/time'
 
 type FeedingsProps = {
   feedings: {
@@ -10,6 +12,15 @@ type FeedingsProps = {
 }
 
 const Feedings = ({ feedings }: FeedingsProps) => {
+  const [now, setNow] = useState<Date>(new Date())
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(new Date())
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <ol>
       {feedings.map(({ id, startTime, endTime, side }) => {
@@ -18,12 +29,14 @@ const Feedings = ({ feedings }: FeedingsProps) => {
 
         return (
           <li key={id}>
-            <span>{side}</span>{' '}
-            <time>{startDate.toLocaleDateString('de-DE')}</time> bis{' '}
-            <time>
-              {endDate ? endDate.toLocaleTimeString('de-DE') : 'läuft'}
-            </time>{' '}
-            ({deltaMinutesNow(startDate)})
+            <Link to={routes.feeding({ id })}>
+              <span>{side}</span>{' '}
+              <time>{startDate.toLocaleString('de-DE')}</time> bis{' '}
+              <time>
+                {endDate ? endDate.toLocaleTimeString('de-DE') : 'läuft'}
+              </time>{' '}
+              ({deltaMinutes(startDate, now)})
+            </Link>
           </li>
         )
       })}
