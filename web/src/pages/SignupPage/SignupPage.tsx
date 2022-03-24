@@ -4,6 +4,7 @@ import {
   Form,
   Label,
   TextField,
+  EmailField,
   PasswordField,
   FieldError,
   Submit,
@@ -38,6 +39,7 @@ const SignupPage = () => {
     } else {
       // user is signed in automatically
       toast.success('Welcome!')
+      navigate(routes.home())
     }
   }
 
@@ -61,14 +63,18 @@ const SignupPage = () => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                   >
-                    Username
+                    E-Mail
                   </Label>
-                  <TextField
+                  <EmailField
                     name="username"
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     ref={usernameRef}
                     validation={{
+                      pattern: {
+                        value: /^[^@]+@[^.]+\..+$/,
+                        message: 'Please enter a valid email address',
+                      },
                       required: {
                         value: true,
                         message: 'Username is required',
@@ -76,6 +82,21 @@ const SignupPage = () => {
                     }}
                   />
                   <FieldError name="username" className="rw-field-error" />
+
+                  <Label
+                    name="name"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                  >
+                    Nickname
+                  </Label>
+                  <TextField
+                    name="name"
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                  />
+                  <FieldError name="name" className="rw-field-error" />
 
                   <Label
                     name="password"
