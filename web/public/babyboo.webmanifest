@@ -1,0 +1,16 @@
+{
+  "name": "BabyBoo",
+  "short_name": "BabyBoo",
+  "description": "BabyBoo",
+  "icons": [
+    {
+      "src": "android-launchericon-512-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/home",
+  "display": "fullscreen",
+  "theme_color": "#581C87",
+  "background_color": "#581C87"
+}
