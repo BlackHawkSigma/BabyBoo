@@ -34,7 +34,20 @@ const Feeding = ({ feeding }: FeedingProps) => {
     const interval = setInterval(() => {
       setNow(new Date())
     }, 1_000)
-    return () => clearInterval(interval)
+
+    let wakeLockObject = null
+
+    if ('wakeLock' in navigator) {
+      navigator.wakeLock.request('screen').then((wakeLock) => {
+        wakeLockObject = wakeLock
+        window.alert('wakelock acquired')
+      })
+    }
+
+    return () => {
+      clearInterval(interval)
+      wakeLockObject && wakeLockObject.release()
+    }
   }, [])
 
   const { startTime, side } = feeding
