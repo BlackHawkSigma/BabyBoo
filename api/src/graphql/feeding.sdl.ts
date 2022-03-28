@@ -47,6 +47,7 @@ export const schema = gql`
   type Query {
     feedings: [Feeding!]! @requireAuth
     feeding(id: Int!): Feeding @requireAuth
+    latestFeeding: Feeding @requireAuth
   }
 
   input StartFeedingInput {

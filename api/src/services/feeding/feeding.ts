@@ -15,6 +15,11 @@ export const feeding = ({ id }: Prisma.FeedingWhereUniqueInput) => {
     where: { id },
   })
 }
+export const latestFeeding = () => {
+  return db.feeding.findFirst({
+    orderBy: { startTime: 'desc' },
+  })
+}
 
 interface StartFeedingArgs {
   input: Prisma.FeedingCreateInput
