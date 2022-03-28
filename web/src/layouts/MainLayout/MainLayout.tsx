@@ -1,5 +1,6 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Link, NavLink, routes } from '@redwoodjs/router'
+import BabyCell from 'src/components/BabyCell'
 
 type MainLayoutProps = {
   children?: React.ReactNode
@@ -17,7 +18,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             activeClassName="text-purple-600"
             to={routes.home()}
           >
-            Home
+            <BabyCell />
           </NavLink>
         </h1>
         <nav>
