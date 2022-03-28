@@ -59,7 +59,7 @@ const LoginPage = () => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                   >
-                    Username
+                    E-Mail
                   </Label>
                   <TextField
                     name="username"
