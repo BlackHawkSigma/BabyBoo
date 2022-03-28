@@ -1,19 +1,27 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import { useEffect } from 'react'
+import LatestFeedingCell from 'src/components/LatestFeedingCell'
 
 const HomePage = () => {
+  useEffect(() => {
+    const onVis = () => console.log(document.visibilityState)
+    const onFocus = () => console.log('focus')
+
+    document.addEventListener('visibilitychange', onVis)
+    window.addEventListener('focus', onFocus)
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVis)
+      window.removeEventListener('focus', onFocus)
+    }
+  }, [])
   return (
     <>
       <MetaTags title="Home" description="Home page" />
 
-      <h1>HomePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/HomePage/HomePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>home</code>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
-      </p>
+      <div className="card">
+        <LatestFeedingCell />
+      </div>
     </>
   )
 }
