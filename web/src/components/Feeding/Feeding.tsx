@@ -55,7 +55,7 @@ const Feeding = ({ feeding }: FeedingProps) => {
       <span>({deltaMinutes(startDate, now)})</span>
       {!feeding.endTime && (
         <button
-          className="rounded-full bg-sky-300 px-4 py-2 disabled:bg-sky-100 disabled:text-slate-400"
+          className="rounded-full bg-sky-300 px-4 py-2 disabled:animate-pulse disabled:bg-sky-100 disabled:text-slate-400"
           disabled={loading}
           onClick={clickHandler}
         >
