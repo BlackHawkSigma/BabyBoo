@@ -39,6 +39,7 @@ const Routes = () => {
 
         <Route path="/home" page={HomePage} name="home" />
         <Route path="/gewicht" page={WeightPage} name="weight" />
+        <Route path="/user" page={UserPage} name="user" />
       </Private>
 
       <Route notfound page={NotFoundPage} />

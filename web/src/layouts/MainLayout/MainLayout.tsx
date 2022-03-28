@@ -6,7 +6,7 @@ type MainLayoutProps = {
 }
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { isAuthenticated, currentUser } = useAuth()
 
   return (
     <>
@@ -32,21 +32,10 @@ const MainLayout = ({ children }: MainLayoutProps) => {
               </NavLink>
             </li>
             <li>
-              {isAuthenticated ? (
-                <div>
-                  <button type="button" onClick={logOut} className="py-2 px-4">
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <Link to={routes.login()} className="py-2 px-4">
-                  Login
-                </Link>
-              )}
-            </li>
-            <li>
               {isAuthenticated && (
-                <div className="text-purple-300">{currentUser.name}</div>
+                <Link to={routes.user()} className="text-purple-300">
+                  {currentUser.name}
+                </Link>
               )}
             </li>
           </ul>
