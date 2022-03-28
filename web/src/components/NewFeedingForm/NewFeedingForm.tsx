@@ -6,9 +6,9 @@ import {
   FormError,
   Label,
   SelectField,
-  Submit,
   SubmitHandler,
 } from '@redwoodjs/forms'
+import StartButton from './StartButton'
 
 const START_FEEDING_MUTATION = gql`
   mutation StartFeeding($input: StartFeedingInput!) {
@@ -24,7 +24,9 @@ const NewFeedingForm = () => {
     {
       onCompleted: (data) => {
         toast.success('Stillen gestartet')
-        navigate(routes.feeding({ id: data.startFeeding.id }))
+        navigate(routes.feeding({ id: data.startFeeding.id }), {
+          replace: true,
+        })
       },
       onError: (error) => {
         toast.error(error.message)
@@ -66,9 +68,7 @@ const NewFeedingForm = () => {
             <option value="RIGHT">Rechts</option>
           </SelectField>
 
-          <Submit disabled={loading} className="rw-button rw-button-green">
-            Start
-          </Submit>
+          <StartButton loading={loading} />
         </Form>
       </div>
     </div>
