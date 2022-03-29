@@ -16,6 +16,14 @@ export const QUERY = gql`
     }
   }
 `
+export const beforeQuery = (props) => {
+  return {
+    variables: props,
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first',
+    pollInterval: 60_000,
+  }
+}
 
 export const Loading = () => <div>Loading...</div>
 
