@@ -1,10 +1,18 @@
-import humanize from 'humanize-string'
-
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
+import {
+  Chart as ChartJS,
+  LinearScale,
+  CategoryScale,
+  PointElement,
+  LineElement,
+} from 'chart.js'
+import { Scatter } from 'react-chartjs-2'
 
 import { QUERY } from 'src/components/Weight/WeightsCell'
+import type { CellSuccessProps } from '@redwoodjs/web'
+import type { FindWeights } from 'types/graphql'
 
 const DELETE_WEIGHT_MUTATION = gql`
   mutation DeleteWeightMutation($id: Int!) {
@@ -14,46 +22,22 @@ const DELETE_WEIGHT_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 150
-
-const formatEnum = (values: string | string[] | null | undefined) => {
-  if (values) {
-    if (Array.isArray(values)) {
-      const humanizedValues = values.map((value) => humanize(value))
-      return humanizedValues.join(', ')
-    } else {
-      return humanize(values as string)
-    }
-  }
-}
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
+const numberFormatter = new Intl.NumberFormat('de-DE', {
+  style: 'unit',
+  unit: 'gram',
+})
 
 const timeTag = (datetime) => {
   return (
     datetime && (
       <time dateTime={datetime} title={datetime}>
-        {new Date(datetime).toUTCString()}
+        {new Date(datetime).toLocaleDateString('de-DE')}
       </time>
     )
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
-const WeightsList = ({ weights }) => {
+const WeightsList = ({ weights }: CellSuccessProps<FindWeights>) => {
   const [deleteWeight] = useMutation(DELETE_WEIGHT_MUTATION, {
     onCompleted: () => {
       toast.success('Weight deleted')
@@ -74,34 +58,37 @@ const WeightsList = ({ weights }) => {
     }
   }
 
+  ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement)
+
+  // const labels = weights.map(({ recordedAt }) =>
+  //   new Date(recordedAt).toLocaleDateString('de-DE')
+  // )
+
+  // const data = weights.map(({ value }) => value)
+  const data = weights.map(({ recordedAt, value }) => ({
+    x: new Date(recordedAt).valueOf() / 1_000,
+    y: value,
+  }))
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
+      <div>
+        <Scatter data={{ datasets: [{ data }] }} />
+      </div>
       <table className="rw-table">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Value</th>
-            <th>Recorded at</th>
-            <th>Created at</th>
+            <th>Gewicht</th>
+            <th>Datum</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {weights.map((weight) => (
             <tr key={weight.id}>
-              <td>{truncate(weight.id)}</td>
-              <td>{truncate(weight.value)}</td>
+              <td>{numberFormatter.format(weight.value)}</td>
               <td>{timeTag(weight.recordedAt)}</td>
-              <td>{timeTag(weight.createdAt)}</td>
               <td>
                 <nav className="rw-table-actions">
-                  <Link
-                    to={routes.weight({ id: weight.id })}
-                    title={'Show weight ' + weight.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
                   <Link
                     to={routes.editWeight({ id: weight.id })}
                     title={'Edit weight ' + weight.id}

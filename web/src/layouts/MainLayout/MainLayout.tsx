@@ -33,8 +33,17 @@ const MainLayout = ({ children }: MainLayoutProps) => {
               </NavLink>
             </li>
             <li>
+              <NavLink
+                className="rounded py-2 px-4 transition duration-100 hover:bg-purple-600"
+                activeClassName="text-purple-100 underline"
+                to={routes.weights()}
+              >
+                Gewicht
+              </NavLink>
+            </li>
+            <li>
               {isAuthenticated && (
-                <Link to={routes.user()} className="text-purple-300">
+                <Link to={routes.user()} className="py-2 px-4 text-purple-300">
                   {currentUser.name}
                 </Link>
               )}
