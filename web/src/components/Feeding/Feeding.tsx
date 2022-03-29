@@ -40,7 +40,6 @@ const Feeding = ({ feeding }: FeedingProps) => {
     if ('wakeLock' in navigator) {
       navigator.wakeLock.request('screen').then((wakeLock) => {
         wakeLockObject = wakeLock
-        window.alert('wakelock acquired')
       })
     }
 
