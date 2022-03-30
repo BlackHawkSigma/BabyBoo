@@ -3,7 +3,9 @@ import type { Prisma } from '@prisma/client'
 import { db } from 'src/lib/db'
 
 export const weights = () => {
-  return db.weight.findMany()
+  return db.weight.findMany({
+    orderBy: { recordedAt: 'asc' },
+  })
 }
 
 export const weight = ({ id }: Prisma.WeightWhereUniqueInput) => {
