@@ -4,11 +4,11 @@ import { Link, routes } from '@redwoodjs/router'
 import {
   Chart as ChartJS,
   LinearScale,
-  CategoryScale,
   PointElement,
   LineElement,
 } from 'chart.js'
 import { Scatter } from 'react-chartjs-2'
+import { differenceInHours, parseISO } from 'date-fns'
 
 import { QUERY } from 'src/components/Weight/WeightsCell'
 import type { CellSuccessProps } from '@redwoodjs/web'
@@ -58,17 +58,16 @@ const WeightsList = ({ weights }: CellSuccessProps<FindWeights>) => {
     }
   }
 
-  ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement)
+  ChartJS.register(LinearScale, PointElement, LineElement)
 
-  // const labels = weights.map(({ recordedAt }) =>
-  //   new Date(recordedAt).toLocaleDateString('de-DE')
-  // )
+  const data = weights.map(({ recordedAt, value }, _index, all) => {
+    const firstDate = all[0].recordedAt
+    return {
+      x: differenceInHours(parseISO(recordedAt), parseISO(firstDate)) / 24,
+      y: value,
+    }
+  })
 
-  // const data = weights.map(({ value }) => value)
-  const data = weights.map(({ recordedAt, value }) => ({
-    x: new Date(recordedAt).valueOf() / 1_000,
-    y: value,
-  }))
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
       <div>
