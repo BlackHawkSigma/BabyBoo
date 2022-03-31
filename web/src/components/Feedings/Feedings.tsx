@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
-import { useEffect, useState } from 'react'
-import { deltaMinutes } from 'src/utils/time'
+import { formatDistanceStrict } from 'date-fns'
+import { de } from 'date-fns/locale'
 
 type FeedingsProps = {
   feedings: {
@@ -11,16 +11,14 @@ type FeedingsProps = {
   }[]
 }
 
+const Side = ({ side }: { side?: string }) => {
+  if (side === 'LEFT') return <span>L</span>
+  if (side === 'RIGHT') return <span>R</span>
+
+  return <span></span>
+}
+
 const Feedings = ({ feedings }: FeedingsProps) => {
-  const [now, setNow] = useState<Date>(new Date())
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(new Date())
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <ol>
       {feedings.map(({ id, startTime, endTime, side }) => {
@@ -28,14 +26,25 @@ const Feedings = ({ feedings }: FeedingsProps) => {
         const endDate = endTime !== null ? new Date(endTime) : null
 
         return (
-          <li key={id}>
+          <li
+            key={id}
+            className="my-1 rounded px-1 odd:bg-stone-100 even:bg-stone-50"
+          >
             <Link to={routes.feeding({ id })}>
-              <span>{side}</span>{' '}
-              <time>{startDate.toLocaleString('de-DE')}</time> bis{' '}
-              <time>
-                {endDate ? endDate.toLocaleTimeString('de-DE') : 'läuft'}
-              </time>{' '}
-              ({deltaMinutes(startDate, now)})
+              <div className="flex justify-start gap-2">
+                <Side side={side} />
+                <time>{startDate.toLocaleString('de-DE')}</time>
+                <time>
+                  {endDate
+                    ? `bis ${endDate.toLocaleTimeString('de-DE')}`
+                    : 'läuft'}
+                </time>
+                {endDate && (
+                  <span className="flex-grow text-right">
+                    {formatDistanceStrict(startDate, endDate, { locale: de })}
+                  </span>
+                )}
+              </div>
             </Link>
           </li>
         )
