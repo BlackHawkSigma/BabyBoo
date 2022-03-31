@@ -37,9 +37,9 @@ const Routes = () => {
           <Route path="/fuettern" page={FeedingsPage} name="feedings" />
         </Set>
 
-        <Route path="/home" page={HomePage} name="home" />
-        <Route path="/gewicht" page={WeightPage} name="weight" />
+        {/* <Route path="/gewicht" page={WeightPage} name="weight" /> */}
         <Route path="/user" page={UserPage} name="user" />
+        <Route path="/" page={HomePage} name="home" />
       </Private>
 
       <Route notfound page={NotFoundPage} />
