@@ -16,5 +16,5 @@ if (rootElement.children?.length > 0) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
+  navigator.serviceWorker.register('sw.js')
 }
