@@ -3,11 +3,10 @@ import {
   FormError,
   FieldError,
   Label,
-  TextField,
+  NumberField,
   DatetimeLocalField,
   Submit,
 } from '@redwoodjs/forms'
-
 
 const formatDatetime = (value) => {
   if (value) {
@@ -15,17 +14,8 @@ const formatDatetime = (value) => {
   }
 }
 
-
 const WeightForm = (props) => {
   const onSubmit = (data) => {
-
-  
-    
-    
-  
-    
-    
-  
     props.onSave(data, props?.weight?.id)
   }
 
@@ -38,23 +28,25 @@ const WeightForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="value"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Value
+          Gewicht [g]
         </Label>
-        
-          <TextField
-            name="value"
-            defaultValue={props.weight?.value}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ valueAsNumber: true, required: true }}
-          />
-        
+
+        <NumberField
+          name="value"
+          defaultValue={props.weight?.value}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          step={10}
+          autoComplete="off"
+          inputMode="numeric"
+          validation={{ valueAsNumber: true, required: true }}
+        />
 
         <FieldError name="value" className="rw-field-error" />
 
@@ -63,26 +55,22 @@ const WeightForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Recorded at
+          Zeitpunkt
         </Label>
-        
-          <DatetimeLocalField
-            name="recordedAt"
-            defaultValue={formatDatetime(props.weight?.recordedAt)}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <DatetimeLocalField
+          name="recordedAt"
+          defaultValue={formatDatetime(props.weight?.recordedAt)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="recordedAt" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
-            Save
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+            Speichern
           </Submit>
         </div>
       </Form>

@@ -16,16 +16,13 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <div>Durchsuche Datenbank...</div>
 
 export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No weights yet. '}
-      <Link
-        to={routes.newWeight()}
-        className="rw-link"
-      >
+      <Link to={routes.newWeight()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

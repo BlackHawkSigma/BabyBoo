@@ -27,7 +27,6 @@ const Routes = () => {
         <Set wrap={WeightsLayout}>
           <Route path="/weights/new" page={WeightNewWeightPage} name="newWeight" />
           <Route path="/weights/{id:Int}/edit" page={WeightEditWeightPage} name="editWeight" />
-          <Route path="/weights/{id:Int}" page={WeightWeightPage} name="weight" />
           <Route path="/weights" page={WeightWeightsPage} name="weights" />
         </Set>
 
@@ -37,7 +36,6 @@ const Routes = () => {
           <Route path="/fuettern" page={FeedingsPage} name="feedings" />
         </Set>
 
-        {/* <Route path="/gewicht" page={WeightPage} name="weight" /> */}
         <Route path="/user" page={UserPage} name="user" />
         <Route path="/" page={HomePage} name="home" />
       </Private>
