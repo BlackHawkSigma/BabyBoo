@@ -71,7 +71,10 @@ const WeightsList = ({ weights }: CellSuccessProps<FindWeights>) => {
   return (
     <div className="rw-segment rw-table-wrapper-responsive">
       <div>
-        <Scatter data={{ datasets: [{ data }] }} />
+        <Scatter
+          options={{ locale: 'de-DE' }}
+          data={{ datasets: [{ data }] }}
+        />
       </div>
       <table className="rw-table">
         <thead>
