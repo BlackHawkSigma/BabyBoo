@@ -4,7 +4,7 @@ import { db } from 'src/lib/db'
 
 export const weights = () => {
   return db.weight.findMany({
-    orderBy: { recordedAt: 'asc' },
+    orderBy: { recordedAt: 'desc' },
   })
 }
 
