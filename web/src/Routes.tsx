@@ -13,15 +13,17 @@ import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import WeightsLayout from 'src/layouts/WeightsLayout'
 import FeedingLayout from './layouts/FeedingLayout/FeedingLayout'
 
+import WhileLoadingAuth from 'src/components/WhileLoadingAuth/WhileLoadingAuth'
+
 const Routes = () => {
   return (
     <Router>
-      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/login" page={LoginPage} name="login" prerender />
       {/* <Route path="/signup" page={SignupPage} name="signup" /> */}
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
 
-      <Private unauthenticated="login" wrap={MainLayout}>
+      <Private unauthenticated="login" wrap={MainLayout} whileLoadingAuth={() => <WhileLoadingAuth />} prerender>
         <Route path="/diaperchange" page={DiaperChangePage} name="diaperChange" />
 
         <Set wrap={WeightsLayout}>
