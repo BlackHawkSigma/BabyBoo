@@ -150,8 +150,7 @@ export const handler = async (event, context) => {
       HttpOnly: true,
       Path: '/',
       SameSite: 'Strict',
-      Secure: true,
-      // Domain: 'example.com',
+      Secure: process.env.NODE_ENV !== 'development' ? true : false,
     },
   })
 
