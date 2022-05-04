@@ -60,59 +60,66 @@ const WeightsList = ({ weights }: CellSuccessProps<FindWeights>) => {
 
   ChartJS.register(LinearScale, PointElement, LineElement)
 
-  const data = weights.map(({ recordedAt, value }, _index, all) => {
-    const firstDate = all[0].recordedAt
-    return {
-      x: differenceInHours(parseISO(recordedAt), parseISO(firstDate)) / 24,
-      y: value,
-    }
-  })
+  const data = weights
+    .slice()
+    .reverse()
+    .map(({ recordedAt, value }, _index, all) => {
+      const firstDate = all[0].recordedAt
+      return {
+        x: differenceInHours(parseISO(recordedAt), parseISO(firstDate)) / 24,
+        y: value,
+      }
+    })
 
   return (
-    <div className="rw-segment rw-table-wrapper-responsive">
+    <>
       <div>
-        <Scatter
-          options={{ locale: 'de-DE' }}
-          data={{ datasets: [{ data }] }}
-        />
+        <div className="rw-segment">
+          <Scatter
+            options={{ locale: 'de-DE' }}
+            data={{ datasets: [{ data }] }}
+          />
+        </div>
+        <div className="rw-segment">
+          <table className="rw-table">
+            <thead>
+              <tr>
+                <th>Gewicht</th>
+                <th>Datum</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {weights.map((weight) => (
+                <tr key={weight.id}>
+                  <td>{numberFormatter.format(weight.value)}</td>
+                  <td>{timeTag(weight.recordedAt)}</td>
+                  <td>
+                    <nav className="rw-table-actions">
+                      <Link
+                        to={routes.editWeight({ id: weight.id })}
+                        title={'Edit weight ' + weight.id}
+                        className="rw-button rw-button-small rw-button-blue"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        type="button"
+                        title={'Delete weight ' + weight.id}
+                        className="rw-button rw-button-small rw-button-red"
+                        onClick={() => onDeleteClick(weight.id)}
+                      >
+                        Delete
+                      </button>
+                    </nav>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <table className="rw-table">
-        <thead>
-          <tr>
-            <th>Gewicht</th>
-            <th>Datum</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {weights.map((weight) => (
-            <tr key={weight.id}>
-              <td>{numberFormatter.format(weight.value)}</td>
-              <td>{timeTag(weight.recordedAt)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.editWeight({ id: weight.id })}
-                    title={'Edit weight ' + weight.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    title={'Delete weight ' + weight.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(weight.id)}
-                  >
-                    Delete
-                  </button>
-                </nav>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    </>
   )
 }
 
