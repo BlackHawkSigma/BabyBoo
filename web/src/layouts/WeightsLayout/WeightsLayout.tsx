@@ -14,7 +14,7 @@ const WeightsLayout = ({ children }: WeightLayoutProps) => {
       <header className="rw-header">
         <h1 className="rw-heading rw-heading-primary">
           <Link to={routes.weights()} className="rw-link">
-            Gewicht Verlauf
+            Verlauf Gewicht
           </Link>
         </h1>
         <Link to={routes.newWeight()} className="rw-button rw-button-green">
