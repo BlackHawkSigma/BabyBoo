@@ -8,4 +8,4 @@ tasks:
   - init: yarn install
     env:
       SESSION_SECRET: Z5QK788t3CLc9CmmVjBmZhuLcL7upat9jkVJ6EGUeeMtaKx2Cer5CY6J4naxv4o8
-    command: yarn run start
+    command: yarn rw dev
