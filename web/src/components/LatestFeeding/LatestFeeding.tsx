@@ -1,4 +1,5 @@
-import { routes, Link } from '@redwoodjs/router'
+import { useEffect, useState } from 'react'
+
 import {
   formatDuration,
   // formatDistanceToNowStrict,
@@ -7,7 +8,8 @@ import {
   formatDistanceToNow,
 } from 'date-fns'
 import deLocale from 'date-fns/locale/de'
-import { useEffect, useState } from 'react'
+
+import { routes, Link } from '@redwoodjs/router'
 
 type LatestFeedingProps = {
   feeding: {

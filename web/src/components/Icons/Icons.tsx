@@ -1,10 +1,10 @@
-import contraceptivePills from './contraceptive-pills.png'
-import thermometer from './thermometer.png'
-import feedingBottle from './feeding-bottle.png'
-import breastFeeding from './breastfeeding.png'
-import babyDiaper from './baby-diaper.png'
 import babyBook from './baby-book.png'
+import babyDiaper from './baby-diaper.png'
+import breastFeeding from './breastfeeding.png'
+import contraceptivePills from './contraceptive-pills.png'
+import feedingBottle from './feeding-bottle.png'
 import measurement from './measurement.png'
+import thermometer from './thermometer.png'
 
 type IconProps = {
   inverted?: boolean

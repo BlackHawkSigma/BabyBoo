@@ -1,6 +1,7 @@
+import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
+
 import WeightForm from 'src/components/Weight/WeightForm'
 
 const CREATE_WEIGHT_MUTATION = gql`

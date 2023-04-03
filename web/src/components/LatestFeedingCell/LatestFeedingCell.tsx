@@ -1,5 +1,7 @@
 import type { FindLatestFeedingQuery } from 'types/graphql'
+
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
 import LatestFeeding from '../LatestFeeding/LatestFeeding'
 
 export const QUERY = gql`

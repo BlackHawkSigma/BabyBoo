@@ -1,4 +1,5 @@
 import { AuthenticationError } from '@redwoodjs/graphql-server'
+
 import { db } from './db'
 
 /**

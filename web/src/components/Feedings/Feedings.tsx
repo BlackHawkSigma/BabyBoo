@@ -1,6 +1,7 @@
-import { Link, routes } from '@redwoodjs/router'
 import { formatDistanceStrict } from 'date-fns'
 import { de } from 'date-fns/locale'
+
+import { Link, routes } from '@redwoodjs/router'
 
 type FeedingsProps = {
   feedings: {

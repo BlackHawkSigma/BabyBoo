@@ -9,11 +9,11 @@
 
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
+import WhileLoadingAuth from 'src/components/WhileLoadingAuth/WhileLoadingAuth'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import WeightsLayout from 'src/layouts/WeightsLayout'
-import FeedingLayout from './layouts/FeedingLayout/FeedingLayout'
 
-import WhileLoadingAuth from 'src/components/WhileLoadingAuth/WhileLoadingAuth'
+import FeedingLayout from './layouts/FeedingLayout/FeedingLayout'
 
 const Routes = () => {
   return (

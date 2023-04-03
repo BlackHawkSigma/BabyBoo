@@ -1,4 +1,5 @@
 import { MetaTags } from '@redwoodjs/web'
+
 import NewFeedingForm from 'src/components/NewFeedingForm/NewFeedingForm'
 
 const StartFeedingPage = () => {
