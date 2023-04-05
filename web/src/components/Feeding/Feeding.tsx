@@ -1,7 +1,5 @@
-import { navigate, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/dist/toast'
 import { useEffect, useState } from 'react'
+
 import {
   formatDistance,
   formatDuration,
@@ -9,6 +7,10 @@ import {
   parseISO,
 } from 'date-fns'
 import deLocale from 'date-fns/locale/de'
+
+import { navigate, routes } from '@redwoodjs/router'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
 
 const END_FEEDING_MUTATION = gql`
   mutation EndFeeding($id: Int!, $input: EndFeedingInput!) {

@@ -1,5 +1,7 @@
 import type { FindFeedingQuery } from 'types/graphql'
+
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
 import Feeding from '../Feeding/Feeding'
 
 export const QUERY = gql`

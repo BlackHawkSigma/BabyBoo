@@ -1,7 +1,7 @@
 import type { FindWeights } from 'types/graphql'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import { Link, routes } from '@redwoodjs/router'
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import Weights from 'src/components/Weight/Weights'
 

@@ -1,18 +1,19 @@
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
-import { Link, routes } from '@redwoodjs/router'
 import {
   Chart as ChartJS,
   LinearScale,
   PointElement,
   LineElement,
 } from 'chart.js'
-import { Scatter } from 'react-chartjs-2'
 import { differenceInHours, parseISO } from 'date-fns'
+import { Scatter } from 'react-chartjs-2'
+import type { FindWeights } from 'types/graphql'
+
+import { Link, routes } from '@redwoodjs/router'
+import { useMutation } from '@redwoodjs/web'
+import type { CellSuccessProps } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Weight/WeightsCell'
-import type { CellSuccessProps } from '@redwoodjs/web'
-import type { FindWeights } from 'types/graphql'
 
 const DELETE_WEIGHT_MUTATION = gql`
   mutation DeleteWeightMutation($id: Int!) {
