@@ -1,6 +1,6 @@
-import { useAuth } from '@redwoodjs/auth'
 import { Link, NavLink, routes } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
 import BabyCell from 'src/components/BabyCell'
 
 type MainLayoutProps = {
@@ -45,7 +45,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             <li>
               {isAuthenticated && (
                 <Link to={routes.user()} className="py-2 px-4 text-purple-300">
-                  {currentUser.name}
+                  {currentUser?.name}
                 </Link>
               )}
             </li>

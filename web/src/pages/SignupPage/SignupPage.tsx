@@ -1,19 +1,20 @@
 import { useRef } from 'react'
 import { useEffect } from 'react'
 
-import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
   Label,
   TextField,
-  EmailField,
   PasswordField,
   FieldError,
   Submit,
+  EmailField,
 } from '@redwoodjs/forms'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
+
+import { useAuth } from 'src/auth'
 
 const SignupPage = () => {
   const { isAuthenticated, signUp } = useAuth()
@@ -24,14 +25,18 @@ const SignupPage = () => {
     }
   }, [isAuthenticated])
 
-  // focus on email box on page load
-  const usernameRef = useRef<HTMLInputElement>()
+  // focus on e-mail box on page load
+  const eMailRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    usernameRef.current.focus()
+    eMailRef.current?.focus()
   }, [])
 
-  const onSubmit = async (data) => {
-    const response = await signUp({ ...data })
+  const onSubmit = async (data: Record<string, string>) => {
+    const response = await signUp({
+      username: data.eMail,
+      name: data.name,
+      password: data.password,
+    })
 
     if (response.message) {
       toast(response.message)
@@ -60,17 +65,17 @@ const SignupPage = () => {
               <div className="rw-form-wrapper">
                 <Form onSubmit={onSubmit} className="rw-form-wrapper">
                   <Label
-                    name="username"
+                    name="eMail"
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                   >
                     E-Mail
                   </Label>
                   <EmailField
-                    name="username"
+                    name="eMail"
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
-                    ref={usernameRef}
+                    ref={eMailRef}
                     validation={{
                       pattern: {
                         value: /^[^@]+@[^.]+\..+$/,
@@ -78,11 +83,11 @@ const SignupPage = () => {
                       },
                       required: {
                         value: true,
-                        message: 'Username is required',
+                        message: 'E-Mail is required',
                       },
                     }}
                   />
-                  <FieldError name="username" className="rw-field-error" />
+                  <FieldError name="eMail" className="rw-field-error" />
 
                   <Label
                     name="name"

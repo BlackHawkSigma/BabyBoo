@@ -9,6 +9,7 @@
 
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
 import WhileLoadingAuth from 'src/components/WhileLoadingAuth/WhileLoadingAuth'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import WeightsLayout from 'src/layouts/WeightsLayout'
@@ -17,7 +18,8 @@ import FeedingLayout from './layouts/FeedingLayout/FeedingLayout'
 
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
+      <Route path="/login" page={LoginPage} name="login" />
       <Route path="/login" page={LoginPage} name="login" prerender />
       {/* <Route path="/signup" page={SignupPage} name="signup" /> */}
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
