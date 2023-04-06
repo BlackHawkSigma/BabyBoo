@@ -142,6 +142,10 @@ export const handler = async (
     // i.e. if your Prisma model is named `User` this value would be `user`, as in `db.user`
     authModelAccessor: 'user',
 
+    // The name of the property you'd call on `db` to access your user credentials table.
+    // ie. if your Prisma model is named `UserCredential` this value would be `userCredential`, as in `db.userCredential`
+    credentialModelAccessor: 'userCredential',
+
     // A map of what dbAuth calls a field to what your database calls it.
     // `id` is whatever column you use to uniquely identify a user (probably
     // something like `id` or `userId` or even `email`)
@@ -152,6 +156,7 @@ export const handler = async (
       salt: 'salt',
       resetToken: 'resetToken',
       resetTokenExpiresAt: 'resetTokenExpiresAt',
+      challenge: 'webAuthnChallenge',
     },
 
     // Specifies attributes on the cookie that dbAuth sets in order to remember
@@ -171,6 +176,36 @@ export const handler = async (
     login: loginOptions,
     resetPassword: resetPasswordOptions,
     signup: signupOptions,
+
+    // See https://redwoodjs.com/docs/authentication/dbauth#webauthn for options
+    webAuthn: {
+      enabled: true,
+      // How long to allow re-auth via WebAuthn in seconds (default is 10 years).
+      // The `login.expires` time denotes how many seconds before a user will be
+      // logged out, and this value is how long they'll be to continue to use a
+      // fingerprint/face scan to log in again. When this one expires they
+      // *must* re-enter username and password to authenticate (WebAuthn will
+      // then be re-enabled for this amount of time).
+      expires: 60 * 60 * 24 * 365 * 10,
+      name: 'Redwood Application',
+      domain:
+        process.env.NODE_ENV === 'development'
+          ? 'localhost'
+          : 'heroic-babyboo.netlify.app',
+      origin:
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:8910'
+          : 'https://heroic-babyboo.netlify.app',
+      type: 'any',
+      timeout: 60000,
+      credentialFields: {
+        id: 'id',
+        userId: 'userId',
+        publicKey: 'publicKey',
+        transports: 'transports',
+        counter: 'counter',
+      },
+    },
   })
 
   return await authHandler.invoke()
