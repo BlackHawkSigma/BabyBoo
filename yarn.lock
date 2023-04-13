@@ -4751,10 +4751,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@simplewebauthn/browser@npm:6.2.2, @simplewebauthn/browser@npm:^6":
+"@simplewebauthn/browser@npm:6.2.2":
   version: 6.2.2
   resolution: "@simplewebauthn/browser@npm:6.2.2"
   checksum: 9863a954709f151a32a35bf370e33a2dc18f94cb55e8b8af96b557431952689df4cd857e130b07d1b069b1a6ab86b697d4264c46a59c3332b86708d853c92187
+  languageName: node
+  linkType: hard
+
+"@simplewebauthn/browser@npm:^7.0.0":
+  version: 7.2.0
+  resolution: "@simplewebauthn/browser@npm:7.2.0"
+  dependencies:
+    "@simplewebauthn/typescript-types": "*"
+  checksum: 7a12b06bb20e1f6214524603b5d030ec110c85dee1399946400315ee4fb9e1fcc79809a41851445b7f09513b56fb6e6fca5c78365e04dee7244e19b985672cb4
   languageName: node
   linkType: hard
 
@@ -4773,6 +4782,13 @@ __metadata:
     jwk-to-pem: ^2.0.4
     node-fetch: ^2.6.0
   checksum: 3eae8260e0774ab47708d112710a31e59d801eebd83d646e9737efe0535494d973f254d644f049dde0a670b0cd6cceca7c22007dbeb320e3db858e6990542521
+  languageName: node
+  linkType: hard
+
+"@simplewebauthn/typescript-types@npm:*":
+  version: 7.0.0
+  resolution: "@simplewebauthn/typescript-types@npm:7.0.0"
+  checksum: 4682a353bace25f195b6621d4b96e9db48562edc68a005785230519c71838028de20154a842c4c1859f605562668ff689ab532b0afdce926d5720e7573160da4
   languageName: node
   linkType: hard
 
@@ -24186,7 +24202,7 @@ __metadata:
     "@redwoodjs/forms": 4.5.0
     "@redwoodjs/router": 4.5.0
     "@redwoodjs/web": 4.5.0
-    "@simplewebauthn/browser": ^6
+    "@simplewebauthn/browser": ^7.0.0
     autoprefixer: ^10.4.2
     chart.js: ^3.7.1
     date-fns: ^2.28.0
