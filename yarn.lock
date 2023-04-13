@@ -20335,12 +20335,12 @@ __metadata:
   linkType: hard
 
 "react-chartjs-2@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "react-chartjs-2@npm:4.0.1"
+  version: 4.3.1
+  resolution: "react-chartjs-2@npm:4.3.1"
   peerDependencies:
     chart.js: ^3.5.0
-    react: ^16.8.0 || ^17.0.0
-  checksum: 9d46035103f6b2de60793734f6621904f3e31b938e811741300591251f5b68e09b5118498355fff191574d375cd62516930d43d75897ba7d1d387b24797bb026
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: cac2500751e812c972d405eeeda9c94bd78a5190c09c4b922d9d888b7d71c0f5a55e3a4f807ce3fed8b32b8d5ccc4cf6f09f402cf64f82fb024e56970226686d
   languageName: node
   linkType: hard
 
