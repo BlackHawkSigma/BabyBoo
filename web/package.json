@@ -13,10 +13,10 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/auth-dbauth-web": "5.4.3",
-    "@redwoodjs/forms": "5.4.3",
-    "@redwoodjs/router": "5.4.3",
-    "@redwoodjs/web": "5.4.3",
+    "@redwoodjs/auth-dbauth-web": "6.3.1",
+    "@redwoodjs/forms": "6.3.1",
+    "@redwoodjs/router": "6.3.1",
+    "@redwoodjs/web": "6.3.1",
     "@simplewebauthn/browser": "^7",
     "chart.js": "^3.7.1",
     "date-fns": "^2.28.0",
