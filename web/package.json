@@ -17,7 +17,7 @@
     "@redwoodjs/forms": "6.3.1",
     "@redwoodjs/router": "6.3.1",
     "@redwoodjs/web": "6.3.1",
-    "@simplewebauthn/browser": "^7",
+    "@simplewebauthn/browser": "^8.0.0",
     "chart.js": "^3.7.1",
     "date-fns": "^2.28.0",
     "prop-types": "15.8.1",

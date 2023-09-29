@@ -5637,12 +5637,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@simplewebauthn/browser@npm:7.2.0, @simplewebauthn/browser@npm:^7":
+"@simplewebauthn/browser@npm:7.2.0":
   version: 7.2.0
   resolution: "@simplewebauthn/browser@npm:7.2.0"
   dependencies:
     "@simplewebauthn/typescript-types": "*"
   checksum: 7a12b06bb20e1f6214524603b5d030ec110c85dee1399946400315ee4fb9e1fcc79809a41851445b7f09513b56fb6e6fca5c78365e04dee7244e19b985672cb4
+  languageName: node
+  linkType: hard
+
+"@simplewebauthn/browser@npm:^8.0.0":
+  version: 8.2.1
+  resolution: "@simplewebauthn/browser@npm:8.2.1"
+  dependencies:
+    "@simplewebauthn/typescript-types": ^8.0.0
+  checksum: 7d28b7989412df2e5dcc27d6b14957a9e7eebe1b591c2cb0fc581d5935a09f9e48d49d2f10d01bf221d4f3dbe6c34dabda8fa81a23f547c1b313a3387ca18a5d
   languageName: node
   linkType: hard
 
@@ -5681,6 +5690,13 @@ __metadata:
   version: 7.0.0
   resolution: "@simplewebauthn/typescript-types@npm:7.0.0"
   checksum: 4682a353bace25f195b6621d4b96e9db48562edc68a005785230519c71838028de20154a842c4c1859f605562668ff689ab532b0afdce926d5720e7573160da4
+  languageName: node
+  linkType: hard
+
+"@simplewebauthn/typescript-types@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@simplewebauthn/typescript-types@npm:8.0.0"
+  checksum: 1e0996bab0f1d9191208ff93f0b056721cb08f1bca57c5f2097f0aa256dc230806eb4da753206fda968f2b98eeb4be6df972356719c700a0d791b3ae723ebd4c
   languageName: node
   linkType: hard
 
@@ -23920,7 +23936,7 @@ __metadata:
     "@redwoodjs/router": 6.3.1
     "@redwoodjs/vite": 6.3.1
     "@redwoodjs/web": 6.3.1
-    "@simplewebauthn/browser": ^7
+    "@simplewebauthn/browser": ^8.0.0
     autoprefixer: ^10.4.2
     chart.js: ^3.7.1
     date-fns: ^2.28.0
