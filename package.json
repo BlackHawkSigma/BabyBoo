@@ -11,9 +11,9 @@
     "serve": "yarn rw dev --fwd=\"--allowed-hosts all --host 0.0.0.0\""
   },
   "devDependencies": {
-    "@redwoodjs/auth-dbauth-setup": "6.3.1",
-    "@redwoodjs/cli-storybook": "6.3.1",
-    "@redwoodjs/core": "6.3.1"
+    "@redwoodjs/auth-dbauth-setup": "6.6.4",
+    "@redwoodjs/cli-storybook": "6.6.4",
+    "@redwoodjs/core": "6.6.4"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
