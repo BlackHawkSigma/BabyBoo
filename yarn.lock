@@ -10316,9 +10316,9 @@ __metadata:
   linkType: hard
 
 "chart.js@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "chart.js@npm:3.7.1"
-  checksum: c22bf176da29b910151de25778fce9ccdf5a74e76386d032d43f0eb65cf9112fa96f1f6683ede4b6f30d8215e8ee3bf4e95d234536fb566615378c005c4d522f
+  version: 3.9.1
+  resolution: "chart.js@npm:3.9.1"
+  checksum: a31342233403faaa53bebc1019aeb7b849d6d2cd4108c10f1dd73b36c4fcfc7c21bce8986f2f6eb00a28801fddc68a287b8c9f65e9758c50db6efef955b4e991
   languageName: node
   linkType: hard
 
