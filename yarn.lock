@@ -20201,13 +20201,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-chartjs-2@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "react-chartjs-2@npm:4.0.1"
+"react-chartjs-2@npm:^5.0.0":
+  version: 5.2.0
+  resolution: "react-chartjs-2@npm:5.2.0"
   peerDependencies:
-    chart.js: ^3.5.0
-    react: ^16.8.0 || ^17.0.0
-  checksum: 9d46035103f6b2de60793734f6621904f3e31b938e811741300591251f5b68e09b5118498355fff191574d375cd62516930d43d75897ba7d1d387b24797bb026
+    chart.js: ^4.1.1
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 437e443a268b7eebab3f1a6f0f5d936e58caf650fca55f568a612a46c563d22af683a64185eac8005aa644e4960a5a72cc1075a2574b89ec46c7653aaf4025e2
   languageName: node
   linkType: hard
 
@@ -23929,7 +23929,7 @@ __metadata:
     prettier-plugin-tailwindcss: ^0.4.0
     prop-types: 15.8.1
     react: 18.2.0
-    react-chartjs-2: ^4.0.1
+    react-chartjs-2: ^5.0.0
     react-dom: 18.2.0
     tailwindcss: ^3.0.23
   languageName: unknown
